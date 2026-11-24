@@ -1,6 +1,6 @@
-# ROSARIO REGIONAL 2026 – ORGANIZADOR DE VIAJE 🏆🎒
+# ROSARIO OPEN 2027 – ORGANIZADOR DE VIAJE 🏆🎒
 
-Aplicación web interactiva para organizar el equipaje y la documentación de los 14 integrantes del viaje al Regional Pokémon VGC 2026 en Rosario.
+Aplicación web interactiva para organizar el equipaje y la documentación de los 14 integrantes del viaje al Pokémon VGC Rosario Open 2027.
 
 ## 🚀 Características Principales
 

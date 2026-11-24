@@ -75,8 +75,7 @@ Aplicación web interactiva para organizar el equipaje y la documentación de lo
    ```
 
 ### Opción 2: Despliegue en Vercel
-1. Ir a [Vercel](https://vercel.com/) e iniciar sesión con tu cuenta de GitHub.
-2. Hacer clic en **"Add New Project"** e importar el repositorio `rosario-regional-2026`.
-3. Framework Preset: **Other / Static**.
-4. Hacer clic en **"Deploy"**.
-5. ¡Listo! Vercel generará una URL pública instantánea (ej. `https://rosario-regional-2026.vercel.app`).
+El proyecto ya se encuentra desplegado y activo en producción bajo tu cuenta de Vercel (`matiasnicos-projects`):
+- 🌐 **Dominio Principal**: [https://viaje-rosario-2026.vercel.app](https://viaje-rosario-2026.vercel.app)
+- 🌐 **Dominio Alternativo**: [https://rosario-regional-2026.vercel.app](https://rosario-regional-2026.vercel.app)
+- 🌐 **Dominio de Cuenta**: [https://viaje-rosario-matiasnicos-projects.vercel.app](https://viaje-rosario-matiasnicos-projects.vercel.app)

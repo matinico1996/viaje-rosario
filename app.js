@@ -119,6 +119,7 @@
     { id: 'item-doc-3', categoryId: 'cat-doc', name: 'billetera (Tarjetas bancarias y/o efectivo).', exclusiveTo: [] },
     { id: 'item-doc-4', categoryId: 'cat-doc', name: 'Carnet de obra social o prepaga.', exclusiveTo: [] },
     { id: 'item-doc-5', categoryId: 'cat-doc', name: 'Llaves de casa.', exclusiveTo: [] },
+    { id: 'item-doc-6', categoryId: 'cat-doc', name: 'AUTORIZACIÓN DE MADRE PARA VIAJE', exclusiveTo: ['ariel'] },
 
     // ROPA
     { id: 'item-rop-1', categoryId: 'cat-ropa', name: '3 mudas de ropa interior.', exclusiveTo: [] },
@@ -167,8 +168,8 @@
   ];
 
   // Claves de LocalStorage
-  const MASTER_STORAGE_KEY = 'rosario_2026_master_config_v2';
-  const CHECKLIST_STORAGE_PREFIX = 'rosario_2026_checklist_';
+  const MASTER_STORAGE_KEY = 'rosario_2026_master_config_v3';
+  const CHECKLIST_STORAGE_PREFIX = 'rosario_2026_checklist_v3_';
 
   // ==========================================================================
   // 2. GESTIÓN DEL ESTADO GLOBAL & LOCALSTORAGE
@@ -605,14 +606,6 @@
           nameSpan.className = 'item-name';
           nameSpan.textContent = item.name;
           nameArea.appendChild(nameSpan);
-
-          // Badge si es exclusivo (ej. Licencia de conducir)
-          if (item.exclusiveTo && item.exclusiveTo.length > 0) {
-            const exclusiveBadge = document.createElement('span');
-            exclusiveBadge.className = 'item-exclusive-badge';
-            exclusiveBadge.innerHTML = '🚗 Solo Conductores';
-            nameArea.appendChild(exclusiveBadge);
-          }
 
           // Badge si es un elemento personalizado agregado por el usuario
           if (item.isCustom) {

@@ -19,99 +19,85 @@
       id: 'lisandro',
       name: 'Lisandro',
       photo: 'pokemon viaje/lisandro.jpg',
-      isDriver: true,
-      roleBadge: '🚗 Conductor'
+      isDriver: true
     },
     {
       id: 'juanma',
       name: 'Juanma',
       photo: 'pokemon viaje/juanma.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenador VGC'
+      isDriver: false
     },
     {
       id: 'mati-ahumada',
       name: 'Mati Ahumada',
       photo: 'pokemon viaje/mati ahumada.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenador VGC'
+      isDriver: false
     },
     {
       id: 'nico',
       name: 'Nico',
       photo: 'pokemon viaje/nico.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenador VGC'
+      isDriver: false
     },
     {
       id: 'kina',
       name: 'Kina',
       photo: 'pokemon viaje/kina.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenador VGC'
+      isDriver: false
     },
     {
       id: 'jon',
       name: 'Jon',
       photo: 'pokemon viaje/jon.jpg',
-      isDriver: true,
-      roleBadge: '🚗 Conductor'
+      isDriver: true
     },
     {
       id: 'romi',
       name: 'Romi',
       photo: 'pokemon viaje/romi.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenadora VGC'
+      isDriver: false
     },
     {
       id: 'ariel',
       name: 'Ariel',
       photo: 'pokemon viaje/ariel.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenador VGC'
+      isDriver: false
     },
     {
       id: 'faculito',
       name: 'Faculito',
       photo: 'pokemon viaje/faculito.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenador VGC'
+      isDriver: false
     },
     {
       id: 'pau',
       name: 'Pau',
       photo: 'pokemon viaje/pau.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenadora VGC'
+      isDriver: false
     },
     {
       id: 'pepo',
       name: 'Pepo',
       photo: 'pokemon viaje/pepo.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenador VGC'
+      isDriver: false
     },
     {
       id: 'joaco',
       name: 'Joaco',
       photo: 'pokemon viaje/Joaco.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenador VGC'
+      isDriver: false
     },
     {
       id: 'fran',
       name: 'Fran',
       photo: 'pokemon viaje/fran.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenador VGC'
+      isDriver: false
     },
     {
       id: 'valen',
       name: 'Valen',
       photo: 'pokemon viaje/valen.jpg',
-      isDriver: false,
-      roleBadge: 'Entrenador VGC'
+      isDriver: false
     }
   ];
 
@@ -181,7 +167,7 @@
   ];
 
   // Claves de LocalStorage
-  const MASTER_STORAGE_KEY = 'rosario_2026_master_config_v1';
+  const MASTER_STORAGE_KEY = 'rosario_2026_master_config_v2';
   const CHECKLIST_STORAGE_PREFIX = 'rosario_2026_checklist_';
 
   // ==========================================================================
@@ -357,16 +343,6 @@
       nameEl.className = 'member-card-name';
       nameEl.textContent = member.name;
 
-      // Badge de rol si corresponde (ej. Conductor)
-      const badgeEl = document.createElement('span');
-      if (member.isDriver) {
-        badgeEl.className = 'member-tag-badge tag-driver';
-        badgeEl.textContent = '🚗 Conductor';
-      } else {
-        badgeEl.className = 'member-tag-badge tag-trainer';
-        badgeEl.textContent = 'Entrenador VGC';
-      }
-
       // Indicador de acción sutil
       const actionEl = document.createElement('div');
       actionEl.className = 'member-card-action';
@@ -377,7 +353,6 @@
 
       card.appendChild(photoWrapper);
       card.appendChild(nameEl);
-      card.appendChild(badgeEl);
       card.appendChild(actionEl);
 
       // Click listener para navegación fluida
@@ -408,7 +383,6 @@
     const profileName = document.getElementById('profile-name');
     const profilePhoto = document.getElementById('profile-photo');
     const profileFallback = document.getElementById('profile-avatar-fallback');
-    const profileRoleBadge = document.getElementById('profile-role-badge');
 
     if (profileName) profileName.textContent = member.name;
 
@@ -418,16 +392,6 @@
       profilePhoto.src = member.photo;
       profilePhoto.alt = `Fotografía de ${member.name}`;
       profileFallback.textContent = getInitials(member.name);
-    }
-
-    if (profileRoleBadge) {
-      if (member.isDriver) {
-        profileRoleBadge.textContent = '🚗 Conductor designado';
-        profileRoleBadge.className = 'member-badge tag-driver';
-      } else {
-        profileRoleBadge.textContent = 'Entrenador VGC';
-        profileRoleBadge.className = 'member-badge tag-trainer';
-      }
     }
 
     // Resetear filtros locales
@@ -836,6 +800,27 @@
   // 7. PANEL DE ADMINISTRACIÓN (GESTIÓN INTEGRANTES, CATEGORÍAS Y MAESTROS)
   // ==========================================================================
 
+  // Contraseña de acceso a la Administración (solo conocida por el organizador)
+  const ADMIN_PASSWORD = 'tala';
+
+  function promptAdminAuth() {
+    const modal = document.getElementById('admin-auth-modal');
+    const input = document.getElementById('admin-password-input');
+    const errorEl = document.getElementById('admin-auth-error');
+    if (!modal) return;
+    if (input) input.value = '';
+    if (errorEl) errorEl.classList.add('hidden');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      if (input) input.focus();
+    }, 60);
+  }
+
+  function closeAdminAuthModal() {
+    const modal = document.getElementById('admin-auth-modal');
+    if (modal) modal.classList.add('hidden');
+  }
+
   function openAdminModal() {
     const modal = document.getElementById('admin-modal');
     if (!modal) return;
@@ -890,7 +875,6 @@
       metaEl.className = 'admin-row-meta';
       metaEl.innerHTML = `
         <span>ID: ${member.id}</span>
-        ${member.isDriver ? '<span class="member-tag-badge tag-driver" style="padding: 1px 6px;">🚗 Conductor</span>' : ''}
         <span>• Archivo: ${member.photo}</span>
       `;
 
@@ -1654,7 +1638,6 @@
             m.name = name;
             if (photo) m.photo = photo;
             m.isDriver = isDriver;
-            m.roleBadge = isDriver ? '🚗 Conductor' : 'Entrenador VGC';
           }
         } else {
           // Crear nuevo integrante
@@ -1663,8 +1646,7 @@
             id: newSlug,
             name,
             photo: photo || `pokemon viaje/${newSlug}.jpg`,
-            isDriver,
-            roleBadge: isDriver ? '🚗 Conductor' : 'Entrenador VGC'
+            isDriver
           };
           masterState.members.push(newMember);
         }
@@ -1694,9 +1676,41 @@
     const btnCloseConfirm = document.getElementById('btn-close-confirm-modal');
     if (btnCloseConfirm) btnCloseConfirm.addEventListener('click', closeConfirmModal);
 
+    // Formulario de autenticación de Administrador
+    const adminAuthForm = document.getElementById('admin-auth-form');
+    if (adminAuthForm) {
+      adminAuthForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = document.getElementById('admin-password-input');
+        const errorEl = document.getElementById('admin-auth-error');
+        const entered = input ? input.value.trim() : '';
+
+        if (entered.toLowerCase() === ADMIN_PASSWORD.toLowerCase()) {
+          closeAdminAuthModal();
+          openAdminModal();
+          showToast('Acceso concedido al Panel de Administración.', 'success');
+        } else {
+          if (errorEl) errorEl.classList.remove('hidden');
+          if (input) {
+            input.value = '';
+            input.focus();
+            input.style.borderColor = 'var(--danger)';
+            setTimeout(() => { input.style.borderColor = ''; }, 1500);
+          }
+        }
+      });
+    }
+
+    const btnCloseAuth = document.getElementById('btn-close-admin-auth');
+    if (btnCloseAuth) btnCloseAuth.addEventListener('click', closeAdminAuthModal);
+
+    const btnCancelAuth = document.getElementById('btn-cancel-admin-auth');
+    if (btnCancelAuth) btnCancelAuth.addEventListener('click', closeAdminAuthModal);
+
     // Cerrar modales con botones de cerrar o backdrop
     document.querySelectorAll('.btn-close-modal').forEach(btn => {
       btn.addEventListener('click', () => {
+        closeAdminAuthModal();
         closeAdminModal();
         closeItemModal();
         closeCategoryModal();
@@ -1708,6 +1722,7 @@
     document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
       backdrop.addEventListener('click', (e) => {
         if (e.target === backdrop) {
+          closeAdminAuthModal();
           closeAdminModal();
           closeItemModal();
           closeCategoryModal();
@@ -1723,8 +1738,8 @@
     document.getElementById('btn-cancel-member-modal')?.addEventListener('click', closeMemberModal);
     document.getElementById('btn-admin-done')?.addEventListener('click', closeAdminModal);
 
-    // Botón abrir Panel de Administración
-    document.getElementById('btn-open-admin')?.addEventListener('click', openAdminModal);
+    // Botón abrir Panel de Administración (solicita contraseña 'tala')
+    document.getElementById('btn-open-admin')?.addEventListener('click', promptAdminAuth);
     document.getElementById('btn-close-admin')?.addEventListener('click', closeAdminModal);
 
     // Pestañas del Panel de Administración
@@ -1777,6 +1792,7 @@
     // Tecla Escape cierra modales
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        closeAdminAuthModal();
         closeAdminModal();
         closeItemModal();
         closeCategoryModal();

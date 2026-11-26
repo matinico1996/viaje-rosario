@@ -157,6 +157,7 @@
     { id: 'item-tec-5', categoryId: 'cat-tecno', name: 'Auriculares.', exclusiveTo: [] },
     { id: 'item-tec-6', categoryId: 'cat-tecno', name: 'Adaptador múltiple o zapatilla eléctrica.', exclusiveTo: [] },
     { id: 'item-tec-7', categoryId: 'cat-tecno', name: 'Cable extra de carga.', exclusiveTo: [] },
+    { id: 'item-tec-8', categoryId: 'cat-tecno', name: 'Nintedo switch ( 1 & 2 ) con su cargador (si es que la tenes)', exclusiveTo: [] },
 
     // SALUD Y COMODIDAD
     { id: 'item-sal-1', categoryId: 'cat-salud', name: 'Medicamentos personales habituales.', exclusiveTo: [] },
@@ -168,8 +169,8 @@
   ];
 
   // Claves de LocalStorage
-  const MASTER_STORAGE_KEY = 'rosario_2026_master_config_v3';
-  const CHECKLIST_STORAGE_PREFIX = 'rosario_2026_checklist_v3_';
+  const MASTER_STORAGE_KEY = 'rosario_2026_master_config_v4';
+  const CHECKLIST_STORAGE_PREFIX = 'rosario_2026_checklist_v4_';
 
   // ==========================================================================
   // 2. GESTIÓN DEL ESTADO GLOBAL & LOCALSTORAGE
